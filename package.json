@@ -1,0 +1,1 @@
+{"dependencies":{"@neondatabase/serverless":"^0.10.4"},"description":"STRATUM Power employer-facing onboarding, with Neon Postgres storage on Vercel","name":"stratum-employer-onboarding","private":true,"scripts":{"start":"echo 'Deploy this folder on Vercel. See README.md.'"},"type":"module","version":"1.0.0"}

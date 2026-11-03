@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STRATUM Power — Employer Onboarding</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#070707;--panel:#111;--panel2:#181818;--line:#2a2a2a;--white:#fff;--gray:#a8a8a8;--cyan:#00d9ff;--radius:16px}
+body{font-family:Georgia,serif;background:var(--black);color:var(--white);line-height:1.55}
+a{color:var(--cyan)}button,input,select,textarea{font-family:Arial,Helvetica,sans-serif}
+.top{position:sticky;top:0;z-index:10;background:#050505;border-bottom:1px solid var(--line)}
+.top-in{max-width:1180px;margin:auto;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:14px}.brand-logo{height:52px;width:auto;max-width:220px;display:block}.brand-logo-foot{height:42px;width:auto;display:block}
+.badge{font-family:Arial,sans-serif;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--cyan);color:var(--cyan);padding:9px 14px;border-radius:999px;white-space:nowrap}
+.wrap{max-width:1180px;margin:auto;padding:28px 20px 60px}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#161616,#080808);border:1px solid var(--line);border-radius:22px;padding:38px 32px;margin-bottom:22px}
+.hero:before{content:"";position:absolute;right:-40px;top:0;width:420px;height:100%;background:repeating-linear-gradient(180deg,#222 0 18px,#111 18px 36px);opacity:.5;transform:skewX(-12deg)}
+.hero>*{position:relative}.eyebrow{font-family:Arial,sans-serif;letter-spacing:.24em;font-size:12px;color:var(--cyan);text-transform:uppercase;font-weight:700}
+h1{font-size:clamp(32px,5vw,56px);line-height:1.05;margin:12px 0}h1 span{color:var(--cyan)}
+.hero p{color:#cfcfcf;max-width:680px;font-size:18px}
+.btn{border:0;border-radius:999px;padding:12px 20px;font-weight:800;cursor:pointer}.btn-primary{background:var(--cyan);color:#000}.btn-ghost{background:transparent;color:#fff;border:1px solid #444}.btn-sm{padding:8px 13px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.grid2{display:grid;grid-template-columns:1.4fr .9fr;gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.card h2,.card h3{margin-bottom:8px}.muted{color:var(--gray);font-family:Arial,sans-serif;font-size:14px}
+.stat{font-size:38px;font-weight:800}.stat-label{font-family:Arial,sans-serif;color:var(--gray);font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.progress{height:12px;background:#262626;border-radius:999px;overflow:hidden;margin:12px 0}.progress i{display:block;height:100%;background:var(--cyan);width:0;transition:.3s}
+.kiss{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.pill{font-family:Arial,sans-serif;font-size:13px;border:1px solid #333;background:#1a1a1a;padding:8px 12px;border-radius:999px}
+.section{margin-top:22px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:14px;flex-wrap:wrap}
+.task{display:flex;gap:12px;align-items:flex-start;padding:14px;border:1px solid var(--line);border-radius:12px;margin-bottom:10px;background:var(--panel2)}
+.task input{width:20px;height:20px;accent-color:var(--cyan);margin-top:3px}.task.done{opacity:.62}.task.done strong{text-decoration:line-through}
+.tag{font-family:Arial,sans-serif;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:#222;border:1px solid #333;padding:4px 7px;border-radius:999px;color:#ddd;white-space:nowrap}
+label{font-family:Arial,sans-serif;font-size:13px;color:#ccc;display:block;margin:12px 0 6px}
+input[type=text],input[type=date],input[type=email],select,textarea{width:100%;background:#0d0d0d;border:1px solid #333;color:#fff;border-radius:10px;padding:11px 12px}
+table{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:14px}th,td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{color:#999;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+tr.sel td{background:#142127}.hidden{display:none!important}.toolbar{display:flex;gap:10px;flex-wrap:wrap}.toolbar input,.toolbar select{width:auto;min-width:180px}
+footer{border-top:1px solid var(--line);padding:26px 20px;text-align:center;color:#888;font-family:Arial,sans-serif;font-size:13px}
+.step{display:flex;gap:14px;margin:14px 0}.num{width:36px;height:36px;border-radius:50%;background:var(--cyan);color:#000;display:grid;place-items:center;font-family:Arial,sans-serif;font-weight:900;flex:0 0 auto}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:800px){.grid,.grid2{grid-template-columns:1fr}.hero{padding:28px 20px}table{display:block;overflow:auto}}
+</style></head><body>
+<header class="top"><div class="top-in"><div class="logo"><svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1290 372" width="1290" height="372" role="img" aria-label="STRATUM Power">
+  <rect x="0" y="0" width="1290" height="372" fill="#141414"/>
+  <!-- Strata bars -->
+  <rect x="53" y="62" width="269" height="31" fill="#E8E7E3"/>
+  <rect x="53" y="119" width="181" height="29" fill="#A9A8A4"/>
+  <rect x="53" y="173" width="269" height="30" fill="#6FE8FB"/>
+  <rect x="54" y="228" width="123" height="31" fill="#7D7C7A"/>
+  <rect x="54" y="285" width="268" height="28" fill="#555454"/>
+  <!-- Wordmark -->
+  <text x="505" y="172" font-family="Arial, Helvetica, 'Liberation Sans', sans-serif" font-size="165" font-weight="700" letter-spacing="1" fill="#F2F1ED" textLength="725" lengthAdjust="spacingAndGlyphs">STRATUM</text>
+  <text x="510" y="308" font-family="Arial, Helvetica, 'Liberation Sans', sans-serif" font-size="102" font-weight="400" fill="#8B949E" textLength="710" lengthAdjust="spacingAndGlyphs">Power</text>
+</svg><div><small style="display:block;font-family:Arial,sans-serif;font-size:11px;letter-spacing:.28em;color:var(--gray)">STRATUMPOWER.AI</small></div></div><span class="badge">Employer / HR Only</span></div></header>
+<main class="wrap">
+<section class="hero"><p class="eyebrow">Employer Onboarding — HR Admin</p><h1>Onboard people.<br><span>Keep it simple.</span></h1><p>For STRATUM Power HR and managers only. Add each hire, keep their record and Drive folder in one place, and work the employer checklist until onboarding is closed. This is not an employee self-service portal.</p><div class="kiss"><span class="pill"><b>K</b>eep</span><span class="pill"><b>I</b>t</span><span class="pill"><b>S</b>imple</span><span class="pill"><b>S</b>tep by step</span></div></section>
+
+<section class="card" style="margin-bottom:22px">
+<h2>Neon Database Connection</h2>
+<p class="muted">Connect this app to Neon in Vercel, not in this code. Set <strong style="color:#fff">DATABASE_URL</strong> in your Vercel project, run <strong style="color:#fff">schema.sql</strong> once in the Neon SQL Editor, then redeploy. No database password is stored in these files.</p>
+<p style="margin-top:12px"><strong>Status:</strong> <span id="neonStatus">Checking...</span></p>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+<button class="btn btn-primary btn-sm" onclick="checkNeon()">Check connection</button>
+<button class="btn btn-ghost btn-sm" onclick="loadFromNeon()">Load from Neon</button>
+<button class="btn btn-ghost btn-sm" onclick="syncToNeon()">Sync all to Neon</button>
+</div>
+<p class="muted" style="margin-top:12px">If the status stays on Local only, the app still works, but records are only on this device. Clicking Sync to Neon pushes the current table to Neon and replaces what is there.</p>
+</section>
+<div class="grid">
+<div class="card"><div class="stat-label">Total Hires</div><div class="stat" id="hrTotal">0</div><p class="muted">Tracked by the employer</p></div>
+<div class="card"><div class="stat-label">In Progress</div><div class="stat" id="hrActive">0</div><p class="muted">Onboarding not yet closed</p></div>
+<div class="card"><div class="stat-label">Complete</div><div class="stat" id="hrDone">0</div><p class="muted">All employer steps done</p></div>
+<div class="card"><div class="stat-label">Drive Folders Linked</div><div class="stat" id="hrDrive">0</div><p class="muted">Employee folders on file</p></div>
+</div>
+<div class="grid2 section">
+<div class="card"><h2>All Employees</h2><p class="muted" style="margin-bottom:14px">Employer view of every hire. Select a row to open that employee&rsquo;s record and employer checklist below. Each employee can have a Google Drive folder link.</p>
+<div class="toolbar" style="margin-bottom:14px"><input type="text" id="search" placeholder="Search name, role or email..." oninput="renderHR()"><select id="filter" onchange="renderHR()"><option value="">All statuses</option><option>Not started</option><option>In progress</option><option>Complete</option></select></div>
+<div style="overflow:auto"><table><thead><tr><th>Employee</th><th>Role</th><th>Start</th><th>Manager</th><th>Progress</th><th>Status</th><th>Drive Folder</th><th></th></tr></thead><tbody id="hrRows"></tbody></table></div><p class="muted" id="emptyMsg"></p>
+<hr style="border-color:#2a2a2a;margin:18px 0"><button class="btn btn-ghost btn-sm" onclick="exportCSV()">Download list (CSV)</button> <button class="btn btn-ghost btn-sm" onclick="clearSamples()">Remove sample rows</button></div>
+<div class="card"><h2>Add an Employee</h2><p class="muted">Employer creates the record. The employee does not fill this in.</p><label>Full name *</label><input type="text" id="newName" placeholder="Full name"><label>Father&rsquo;s name</label><input type="text" id="newFather" placeholder="Father's name"><label>CNIC</label><input type="text" id="newCnic" placeholder="00000-0000000-0"><label>Email</label><input type="email" id="newEmail" placeholder="name@example.com"><label>Address</label><textarea id="newAddress" rows="2" placeholder="Home address"></textarea><label>Role</label><input type="text" id="newRole" placeholder="Role / title"><label>Start date</label><input type="date" id="newDate"><label>Manager</label><input type="text" id="newMgr" placeholder="Manager name"><label>Google Drive folder link</label><input type="text" id="newDrive" placeholder="Paste Google Drive folder link (optional)"><button class="btn btn-primary" style="margin-top:16px;width:100%" onclick="addHire()">+ Add Employee</button></div>
+</div>
+<div class="grid2 section">
+<div class="card"><h2>Employee Record</h2><p class="muted">Employer use only. Editing and saving here updates the table above.</p>
+<label>Employee</label><select id="recSelect" onchange="selectHire(parseInt(this.value))"></select>
+<label>Full name</label><input type="text" id="recName"><label>Father&rsquo;s name</label><input type="text" id="recFather"><label>CNIC</label><input type="text" id="recCnic"><label>Email</label><input type="email" id="recEmail"><label>Address</label><textarea id="recAddress" rows="2"></textarea><label>Role</label><input type="text" id="recRole"><label>Start date</label><input type="date" id="recDate"><label>Manager</label><input type="text" id="recMgr"><label>Google Drive folder link</label><input type="text" id="recDrive" placeholder="Paste Google Drive folder link"><p style="margin-top:8px"><a id="recDriveOpen" href="#" target="_blank" rel="noopener" class="hidden">Open Drive folder &#8599;</a></p>
+<button class="btn btn-primary btn-sm" style="margin-top:14px" onclick="saveRecord()">Save record</button> <span class="muted" id="savedMsg"></span></div>
+<div class="card"><h2>Employer Timeline</h2>
+<div class="step"><div class="num">1</div><div><strong>Before Day 1 — Employer prepares</strong><p class="muted">Offer issued, ID verified, payroll set up, laptop and accounts ready, Drive folder created.</p></div></div>
+<div class="step"><div class="num">2</div><div><strong>Day 1 — Employer issues and introduces</strong><p class="muted">Laptop, badge and access handed over. Manager and buddy introduced.</p></div></div>
+<div class="step"><div class="num">3</div><div><strong>Week 1 — Employer assigns and tracks</strong><p class="muted">Safety, compliance, product and role training assigned. Chase only what is blocked.</p></div></div>
+<div class="step"><div class="num">4</div><div><strong>Day 30 — Employer reviews and closes</strong><p class="muted">Manager reviews first work, employer holds the 30-day review and closes onboarding.</p></div></div>
+<hr style="border-color:#2a2a2a;margin:18px 0"><h3>Internal HR Notes</h3><p class="muted">Internal only: provisioning contacts, office details, blockers. Not shared with the employee.</p><label>Notes (saves on this device)</label><textarea id="notes" rows="4" placeholder="Office address, HR contact, IT provisioning contact, blockers..."></textarea><button class="btn btn-primary btn-sm" style="margin-top:10px" onclick="saveNotes()">Save notes</button>
+<p style="margin-top:16px">🛡️ <strong>Core rule</strong><br><span class="muted">Super Intelligence (SI) never equals authority. A person reviews and approves.</span></p></div>
+</div>
+<div class="section"><div class="section-head"><div><h2>Employer Checklist</h2><p class="muted">For the selected employee: <strong id="checkFor" style="color:#fff"></strong>. HR / the manager checks each employer step off. Progress in the table updates automatically.</p></div><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span class="tag" id="checkPct">0% complete</span><button class="btn btn-ghost btn-sm" onclick="resetChecks()">Reset checklist</button></div></div>
+<div class="progress"><i id="checkBar"></i></div><div id="taskList"></div></div>
+</main>
+<footer><div style="display:flex;justify-content:center;margin-bottom:12px"><svg class="brand-logo-foot" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1290 372" width="1290" height="372" role="img" aria-label="STRATUM Power">
+  <rect x="0" y="0" width="1290" height="372" fill="#141414"/>
+  <!-- Strata bars -->
+  <rect x="53" y="62" width="269" height="31" fill="#E8E7E3"/>
+  <rect x="53" y="119" width="181" height="29" fill="#A9A8A4"/>
+  <rect x="53" y="173" width="269" height="30" fill="#6FE8FB"/>
+  <rect x="54" y="228" width="123" height="31" fill="#7D7C7A"/>
+  <rect x="54" y="285" width="268" height="28" fill="#555454"/>
+  <!-- Wordmark -->
+  <text x="505" y="172" font-family="Arial, Helvetica, 'Liberation Sans', sans-serif" font-size="165" font-weight="700" letter-spacing="1" fill="#F2F1ED" textLength="725" lengthAdjust="spacingAndGlyphs">STRATUM</text>
+  <text x="510" y="308" font-family="Arial, Helvetica, 'Liberation Sans', sans-serif" font-size="102" font-weight="400" fill="#8B949E" textLength="710" lengthAdjust="spacingAndGlyphs">Power</text>
+</svg></div>STRATUM POWER &bull; STRATUMPOWER.AI &bull; EMPLOYER / HR USE ONLY<br>Vercel deploy — when Neon is connected, records live in your Neon database. Until then, records save to this browser only. Employer / HR use only: keep the deployed site protected.</footer>
+<script>
+const STEPS=[
+{phase:"Before Day 1",title:"Issue offer letter & employment forms",desc:"Send to the employee and file the signed copy in their Drive folder."},
+{phase:"Before Day 1",title:"Verify ID & CNIC on file",desc:"Check the originals and store copies in the employee Drive folder."},
+{phase:"Before Day 1",title:"Set up payroll & benefits record",desc:"Bank details, tax forms, and emergency contact on file."},
+{phase:"Before Day 1",title:"Create employee Drive folder",desc:"Create the folder, paste its link into the record, and file documents there."},
+{phase:"Day 1",title:"Issue laptop, badge & accounts",desc:"Email, calendar, and building / system access ready and handed over."},
+{phase:"Day 1",title:"Assign manager & buddy",desc:"Confirm both, and share the Day 1 plan with them."},
+{phase:"Week 1",title:"Assign safety & compliance training",desc:"Enrol the employee and track completion to done."},
+{phase:"Week 1",title:"Assign product & role training",desc:"STRATUM Spatial Verified basics, plus the role plan from the manager."},
+{phase:"First Month",title:"Review first assignment",desc:"Manager reviews the first delivered work and notes it on the record."},
+{phase:"First Month",title:"Hold 30-day review & close onboarding",desc:"Employer review done both ways, then mark onboarding complete."}];
+/* First employee is added after deploy via the Add an Employee form, so no personal data is shipped in this code. */
+function blankChecks(){return STEPS.map(()=>false)}
+function checksFromProg(p){let n=Math.round((p||0)/10);return STEPS.map((_,i)=>i<n)}
+let hires=JSON.parse(localStorage.getItem('sp_hires')||'null')||[
+{name:"Sample — Alex Example",role:"Electrical Engineer",date:"",mgr:"",prog:40,sample:true},
+{name:"Sample — Jordan Example",role:"Field Technician",date:"",mgr:"",prog:0,sample:true},
+{name:"Sample — Taylor Example",role:"Project Coordinator",date:"",mgr:"",prog:100,sample:true}];
+hires.forEach(h=>{if(!Array.isArray(h.checks)||h.checks.length!==STEPS.length){h.checks=checksFromProg(h.prog)}h.prog=h.checks.filter(Boolean).length*10});
+let sel=parseInt(localStorage.getItem('sp_sel')||'0');if(sel<0||sel>=hires.length)sel=0;
+function save(){localStorage.setItem('sp_hires',JSON.stringify(hires));localStorage.setItem('sp_sel',String(sel))}
+function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function status(h){return h.prog>=100?'Complete':h.prog>0?'In progress':'Not started'}
+function renderHR(){let q=(search.value||'').toLowerCase(),f=filter.value;let rows=hires.map((h,i)=>({h,i})).filter(x=>(!q||(x.h.name+' '+(x.h.role||'')+' '+(x.h.email||'')).toLowerCase().includes(q))&&(!f||status(x.h)===f));hrRows.innerHTML=rows.map(({h,i})=>{let detail=[h.email?esc(h.email):'',h.father?'Father: '+esc(h.father):'',h.cnic?'CNIC: '+esc(h.cnic):'',h.address?esc(h.address):''].filter(Boolean).join('<br>');let drive=h.drive?'<a href="'+esc(h.drive)+'" target="_blank" rel="noopener">Open folder &#8599;</a><br><button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="setDrive('+i+')">Edit link</button>':'<button class="btn btn-ghost btn-sm" onclick="setDrive('+i+')">+ Add Drive link</button>';return '<tr class="'+(i===sel?'sel':'')+'"><td><strong>'+esc(h.name)+'</strong>'+(h.sample?' <span class="tag">Sample</span>':'')+(detail?'<br><small class="muted">'+detail+'</small>':'')+'</td><td>'+esc(h.role||'\u2014')+'</td><td>'+(h.date||'\u2014')+'</td><td>'+esc(h.mgr||'\u2014')+'</td><td><div class="progress" style="margin:0;min-width:90px"><i style="width:'+h.prog+'%"></i></div><small>'+h.prog+'%</small></td><td>'+status(h)+'</td><td>'+drive+'</td><td style="white-space:nowrap"><button class="btn btn-primary btn-sm" onclick="selectHire('+i+')">Open</button> <button class="btn btn-ghost btn-sm" onclick="delHire('+i+')">&#10005;</button></td></tr>'}).join('');emptyMsg.textContent=rows.length?'':'No employees match. Add one with the form.';hrTotal.textContent=hires.length;hrActive.textContent=hires.filter(h=>h.prog<100).length;hrDone.textContent=hires.filter(h=>h.prog>=100).length;hrDrive.textContent=hires.filter(h=>h.drive).length;recSelect.innerHTML=hires.map((h,i)=>'<option value="'+i+'"'+(i===sel?' selected':'')+'>'+esc(h.name)+'</option>').join('')}
+function renderRecord(){let h=hires[sel];if(!h)return;recName.value=h.name||'';recFather.value=h.father||'';recCnic.value=h.cnic||'';recEmail.value=h.email||'';recAddress.value=h.address||'';recRole.value=h.role||'';recDate.value=h.date||'';recMgr.value=h.mgr||'';recDrive.value=h.drive||'';updateRecDriveOpen()}
+function updateRecDriveOpen(){let v=(recDrive.value||'').trim();recDriveOpen.href=v||'#';recDriveOpen.classList.toggle('hidden',!v)}
+function renderChecks(){let h=hires[sel];if(!h){taskList.innerHTML='';return}checkFor.textContent=h.name;let el=taskList;el.innerHTML='';let last='';STEPS.forEach((s,i)=>{if(s.phase!==last){el.innerHTML+='<h3 style="margin:18px 0 10px;color:var(--cyan);font-family:Arial,sans-serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase">'+s.phase+'</h3>';last=s.phase}el.innerHTML+='<div class="task '+(h.checks[i]?'done':'')+'"><input type="checkbox" '+(h.checks[i]?'checked':'')+' onchange="toggleCheck('+i+')"><div style="flex:1"><strong>'+s.title+'</strong><p class="muted">'+s.desc+'</p></div><span class="tag">'+(h.checks[i]?'Done':'To do')+'</span></div>'});checkPct.textContent=h.prog+'% complete';checkBar.style.width=h.prog+'%'}
+function renderAll(){renderHR();renderRecord();renderChecks()}
+function selectHire(i){sel=i;save();renderAll();document.getElementById('checkFor').scrollIntoView({behavior:'smooth',block:'nearest'})}
+function toggleCheck(i){let h=hires[sel];h.checks[i]=!h.checks[i];h.prog=h.checks.filter(Boolean).length*10;save();renderHR();renderChecks()}
+function resetChecks(){if(confirm('Reset the employer checklist for this employee?')){hires[sel].checks=blankChecks();hires[sel].prog=0;save();renderHR();renderChecks()}}
+function saveRecord(){let h=hires[sel];if(!h)return;h.name=recName.value.trim()||h.name;h.father=recFather.value.trim();h.cnic=recCnic.value.trim();h.email=recEmail.value.trim();h.address=recAddress.value.trim();h.role=recRole.value.trim();h.date=recDate.value;h.mgr=recMgr.value.trim();let d=recDrive.value.trim();if(d&&!/^https?:\/\//i.test(d)){alert('Paste a full Drive link starting with https://');return}h.drive=d;save();renderAll();savedMsg.textContent='Saved \u2713';setTimeout(()=>savedMsg.textContent='',2000)}
+function saveNotes(){localStorage.setItem('sp_notes',notes.value);alert('Notes saved on this device.')}
+function setDrive(i){let v=prompt('Google Drive folder link for '+hires[i].name+':',hires[i].drive||'');if(v===null)return;v=v.trim();if(v&&!/^https?:\/\//i.test(v)){alert('Paste a full link starting with https://');return}hires[i].drive=v;save();renderAll()}
+function addHire(){if(!newName.value.trim()){alert('Add a name first.');return}let d=newDrive.value.trim();if(d&&!/^https?:\/\//i.test(d)){alert('Paste a full Drive link starting with https://');return}hires.push({name:newName.value.trim(),father:newFather.value.trim(),cnic:newCnic.value.trim(),email:newEmail.value.trim(),address:newAddress.value.trim(),role:newRole.value.trim(),date:newDate.value,mgr:newMgr.value.trim(),drive:d,prog:0,checks:blankChecks()});sel=hires.length-1;save();renderAll();newName.value=newFather.value=newCnic.value=newEmail.value=newAddress.value=newRole.value=newMgr.value=newDrive.value='';newDate.value=''}
+function delHire(i){if(confirm('Remove this employee record?')){hires.splice(i,1);if(sel>=hires.length)sel=Math.max(0,hires.length-1);save();renderAll()}}
+function clearSamples(){hires=hires.filter(h=>!h.sample);if(sel>=hires.length)sel=Math.max(0,hires.length-1);save();renderAll()}
+function exportCSV(){let csv='Name,Father Name,CNIC,Email,Address,Role,Start Date,Manager,Progress %,Status,Google Drive Folder\n'+hires.map(h=>[h.name,h.father,h.cnic,h.email,h.address,h.role,h.date,h.mgr,h.prog,status(h),h.drive].map(x=>'"'+String(x||'').replace(/"/g,'""')+'"').join(',')).join('\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='stratum-employer-onboarding.csv';a.click()}
+recDrive.addEventListener('input',updateRecDriveOpen);notes.value=localStorage.getItem('sp_notes')||'';save();renderAll();
+</script>
+<script>
+let neonMode = false;
+function setNeonStatus(text){ const el=document.getElementById('neonStatus'); if(el) el.textContent=text; }
+function mapDbRow(r){ return {id:r.id, name:r.name||'', father:r.father_name||'', cnic:r.cnic||'', email:r.email||'', address:r.address||'', role:r.role||'', date:r.start_date?String(r.start_date).slice(0,10):'', mgr:r.manager||'', drive:r.drive_folder||'', prog:r.progress||0, sample:!!r.sample, checks:Array.isArray(r.checks)&&r.checks.length===STEPS.length?r.checks:checksFromProg(r.progress||0)}; }
+async function checkNeon(){ try{ const res=await fetch('/api/health'); const data=await res.json(); if(data && data.database==='connected'){ neonMode=true; setNeonStatus('Connected to Neon (' + (data.count ?? '?') + ' employees in database)'); } else { neonMode=false; setNeonStatus('Local only: ' + (data && data.error ? data.error : 'DATABASE_URL is not set in Vercel')); } }catch(e){ neonMode=false; setNeonStatus('Local only: API is not available (this happens when opening the file directly instead of the deployed site)'); } }
+async function loadFromNeon(){ try{ const res=await fetch('/api/employees'); if(!res.ok) throw new Error('API returned ' + res.status); const rows=await res.json(); hires=rows.map(mapDbRow); sel=0; save(); renderAll(); neonMode=true; setNeonStatus('Connected to Neon: loaded ' + hires.length + ' employees'); }catch(e){ alert('Could not load from Neon. Check the connection first, and make sure schema.sql has been run.'); await checkNeon(); } }
+async function syncToNeon(){ if(!confirm('Sync all employees in this table to Neon? This replaces the employees table in Neon with the current table.')) return; try{ const res=await fetch('/api/sync',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({employees:hires})}); const data=await res.json().catch(()=>({})); if(!res.ok) throw new Error(data.error || ('API returned ' + res.status)); neonMode=true; setNeonStatus('Connected to Neon: synced ' + (data.count ?? hires.length) + ' employees'); alert('Synced to Neon.'); }catch(e){ alert('Sync failed: ' + e.message + ' Check that DATABASE_URL is set in Vercel and schema.sql has been run.'); await checkNeon(); } }
+checkNeon();
+</script>
+</body></html>
