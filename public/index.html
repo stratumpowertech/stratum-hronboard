@@ -1,155 +1,579 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>STRATUM Power — Employer Onboarding</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--black:#070707;--panel:#111;--panel2:#181818;--line:#2a2a2a;--white:#fff;--gray:#a8a8a8;--cyan:#00d9ff;--radius:16px}
-body{font-family:Georgia,serif;background:var(--black);color:var(--white);line-height:1.55}
-a{color:var(--cyan)}button,input,select,textarea{font-family:Arial,Helvetica,sans-serif}
-.top{position:sticky;top:0;z-index:10;background:#050505;border-bottom:1px solid var(--line)}
-.top-in{max-width:1180px;margin:auto;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-.logo{display:flex;align-items:center;gap:14px}.brand-logo{height:52px;width:auto;max-width:220px;display:block}.brand-logo-foot{height:42px;width:auto;display:block}
-.badge{font-family:Arial,sans-serif;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--cyan);color:var(--cyan);padding:9px 14px;border-radius:999px;white-space:nowrap}
-.wrap{max-width:1180px;margin:auto;padding:28px 20px 60px}
-.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#161616,#080808);border:1px solid var(--line);border-radius:22px;padding:38px 32px;margin-bottom:22px}
-.hero:before{content:"";position:absolute;right:-40px;top:0;width:420px;height:100%;background:repeating-linear-gradient(180deg,#222 0 18px,#111 18px 36px);opacity:.5;transform:skewX(-12deg)}
-.hero>*{position:relative}.eyebrow{font-family:Arial,sans-serif;letter-spacing:.24em;font-size:12px;color:var(--cyan);text-transform:uppercase;font-weight:700}
-h1{font-size:clamp(32px,5vw,56px);line-height:1.05;margin:12px 0}h1 span{color:var(--cyan)}
-.hero p{color:#cfcfcf;max-width:680px;font-size:18px}
-.btn{border:0;border-radius:999px;padding:12px 20px;font-weight:800;cursor:pointer}.btn-primary{background:var(--cyan);color:#000}.btn-ghost{background:transparent;color:#fff;border:1px solid #444}.btn-sm{padding:8px 13px;font-size:13px}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.grid2{display:grid;grid-template-columns:1.4fr .9fr;gap:16px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
-.card h2,.card h3{margin-bottom:8px}.muted{color:var(--gray);font-family:Arial,sans-serif;font-size:14px}
-.stat{font-size:38px;font-weight:800}.stat-label{font-family:Arial,sans-serif;color:var(--gray);font-size:13px;letter-spacing:.08em;text-transform:uppercase}
-.progress{height:12px;background:#262626;border-radius:999px;overflow:hidden;margin:12px 0}.progress i{display:block;height:100%;background:var(--cyan);width:0;transition:.3s}
-.kiss{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.pill{font-family:Arial,sans-serif;font-size:13px;border:1px solid #333;background:#1a1a1a;padding:8px 12px;border-radius:999px}
-.section{margin-top:22px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:14px;flex-wrap:wrap}
-.task{display:flex;gap:12px;align-items:flex-start;padding:14px;border:1px solid var(--line);border-radius:12px;margin-bottom:10px;background:var(--panel2)}
-.task input{width:20px;height:20px;accent-color:var(--cyan);margin-top:3px}.task.done{opacity:.62}.task.done strong{text-decoration:line-through}
-.tag{font-family:Arial,sans-serif;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:#222;border:1px solid #333;padding:4px 7px;border-radius:999px;color:#ddd;white-space:nowrap}
-label{font-family:Arial,sans-serif;font-size:13px;color:#ccc;display:block;margin:12px 0 6px}
-input[type=text],input[type=date],input[type=email],select,textarea{width:100%;background:#0d0d0d;border:1px solid #333;color:#fff;border-radius:10px;padding:11px 12px}
-table{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:14px}th,td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{color:#999;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
-tr.sel td{background:#142127}.hidden{display:none!important}.toolbar{display:flex;gap:10px;flex-wrap:wrap}.toolbar input,.toolbar select{width:auto;min-width:180px}
-footer{border-top:1px solid var(--line);padding:26px 20px;text-align:center;color:#888;font-family:Arial,sans-serif;font-size:13px}
-.step{display:flex;gap:14px;margin:14px 0}.num{width:36px;height:36px;border-radius:50%;background:var(--cyan);color:#000;display:grid;place-items:center;font-family:Arial,sans-serif;font-weight:900;flex:0 0 auto}
-@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:800px){.grid,.grid2{grid-template-columns:1fr}.hero{padding:28px 20px}table{display:block;overflow:auto}}
-</style></head><body>
-<header class="top"><div class="top-in"><div class="logo"><svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1290 372" width="1290" height="372" role="img" aria-label="STRATUM Power">
-  <rect x="0" y="0" width="1290" height="372" fill="#141414"/>
-  <!-- Strata bars -->
-  <rect x="53" y="62" width="269" height="31" fill="#E8E7E3"/>
-  <rect x="53" y="119" width="181" height="29" fill="#A9A8A4"/>
-  <rect x="53" y="173" width="269" height="30" fill="#6FE8FB"/>
-  <rect x="54" y="228" width="123" height="31" fill="#7D7C7A"/>
-  <rect x="54" y="285" width="268" height="28" fill="#555454"/>
-  <!-- Wordmark -->
-  <text x="505" y="172" font-family="Arial, Helvetica, 'Liberation Sans', sans-serif" font-size="165" font-weight="700" letter-spacing="1" fill="#F2F1ED" textLength="725" lengthAdjust="spacingAndGlyphs">STRATUM</text>
-  <text x="510" y="308" font-family="Arial, Helvetica, 'Liberation Sans', sans-serif" font-size="102" font-weight="400" fill="#8B949E" textLength="710" lengthAdjust="spacingAndGlyphs">Power</text>
-</svg><div><small style="display:block;font-family:Arial,sans-serif;font-size:11px;letter-spacing:.28em;color:var(--gray)">STRATUMPOWER.AI</small></div></div><span class="badge">Employer / HR Only</span></div></header>
-<main class="wrap">
-<section class="hero"><p class="eyebrow">Employer Onboarding — HR Admin</p><h1>Onboard people.<br><span>Keep it simple.</span></h1><p>For STRATUM Power HR and managers only. Add each hire, keep their record and Drive folder in one place, and work the employer checklist until onboarding is closed. This is not an employee self-service portal.</p><div class="kiss"><span class="pill"><b>K</b>eep</span><span class="pill"><b>I</b>t</span><span class="pill"><b>S</b>imple</span><span class="pill"><b>S</b>tep by step</span></div></section>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>STRATUM Power — Employer Onboarding</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{--black:#070707;--panel:#111;--panel2:#181818;--line:#2a2a2a;--white:#fff;--gray:#a8a8a8;--cyan:#00d9ff;--red:#ff7b7b;--green:#72e6a5;--radius:16px}
+    body{font-family:Georgia,serif;background:var(--black);color:var(--white);line-height:1.55}
+    a{color:var(--cyan)}
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    .top{position:sticky;top:0;z-index:10;background:#050505;border-bottom:1px solid var(--line)}
+    .top-in{max-width:1180px;margin:auto;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+    .logo{display:flex;align-items:center;gap:14px}
+    .brand-logo{height:52px;width:auto;max-width:220px;display:block}
+    .brand-logo-foot{height:42px;width:auto;display:block}
+    .badge{font-family:Arial,sans-serif;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--cyan);color:var(--cyan);padding:9px 14px;border-radius:999px;white-space:nowrap}
+    .wrap{max-width:1180px;margin:auto;padding:28px 20px 60px}
+    .hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#161616,#080808);border:1px solid var(--line);border-radius:22px;padding:38px 32px;margin-bottom:22px}
+    .hero:before{content:"";position:absolute;right:-40px;top:0;width:420px;height:100%;background:repeating-linear-gradient(180deg,#222 0 18px,#111 18px 36px);opacity:.5;transform:skewX(-12deg)}
+    .hero>*{position:relative}
+    .eyebrow{font-family:Arial,sans-serif;letter-spacing:.24em;font-size:12px;color:var(--cyan);text-transform:uppercase;font-weight:700}
+    h1{font-size:clamp(32px,5vw,56px);line-height:1.05;margin:12px 0}
+    h1 span{color:var(--cyan)}
+    .hero p{color:#cfcfcf;max-width:700px;font-size:18px}
+    .btn{border:0;border-radius:999px;padding:12px 20px;font-weight:800;background:transparent;color:#fff;transition:background-color .2s,color .2s,border-color .2s;min-height:44px}
+    .btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid rgba(0,217,255,.45);outline-offset:2px}
+    .btn:disabled{cursor:not-allowed;opacity:.55}
+    .btn-primary{background:var(--cyan);color:#000}
+    .btn-primary:hover:not(:disabled){background:#78edff}
+    .btn-ghost{border:1px solid #444}
+    .btn-ghost:hover:not(:disabled){border-color:var(--cyan);color:var(--cyan)}
+    .btn-danger:hover:not(:disabled){border-color:var(--red);color:var(--red)}
+    .btn-sm{padding:8px 13px;font-size:13px;min-height:38px}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .grid2{display:grid;grid-template-columns:1.4fr .9fr;gap:16px}
+    .card{min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+    .card h2,.card h3{margin-bottom:8px}
+    .muted{color:var(--gray);font-family:Arial,sans-serif;font-size:14px}
+    .status-line{min-height:22px;color:var(--gray);font-family:Arial,sans-serif;font-size:14px}
+    .status-line.error{color:var(--red)}
+    .status-line.success{color:var(--green)}
+    .stat{font-size:38px;font-weight:800}
+    .stat-label{font-family:Arial,sans-serif;color:var(--gray);font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+    .progress{height:12px;background:#262626;border-radius:999px;overflow:hidden;margin:12px 0}
+    .progress i{display:block;height:100%;background:var(--cyan);width:0;transition:width .3s}
+    .kiss{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+    .pill{font-family:Arial,sans-serif;font-size:13px;border:1px solid #333;background:#1a1a1a;padding:8px 12px;border-radius:999px}
+    .section{margin-top:22px}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:14px;flex-wrap:wrap}
+    .task{display:flex;gap:12px;align-items:flex-start;padding:14px;border:1px solid var(--line);border-radius:12px;margin-bottom:10px;background:var(--panel2)}
+    .task input{width:20px;height:20px;accent-color:var(--cyan);margin-top:3px;flex:0 0 auto}
+    .task.done{opacity:.62}
+    .task.done strong{text-decoration:line-through}
+    .tag{font-family:Arial,sans-serif;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:#222;border:1px solid #333;padding:4px 7px;border-radius:999px;color:#ddd;white-space:nowrap}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+    .field{min-width:0}
+    .field.full{grid-column:1/-1}
+    label{font-family:Arial,sans-serif;font-size:13px;color:#ddd;display:block;margin:12px 0 6px}
+    input[type=text],input[type=date],input[type=email],input[type=tel],input[type=url],select,textarea{width:100%;background:#0d0d0d;border:1px solid #3b3b3b;color:#fff;border-radius:10px;padding:11px 12px;min-height:44px}
+    textarea{resize:vertical}
+    .form-title{font-family:Arial,sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin:18px 0 0;grid-column:1/-1}
+    table{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:14px}
+    th,td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+    th{color:#999;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+    tr.sel td{background:#142127}
+    .hidden{display:none!important}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap}
+    .toolbar input,.toolbar select{width:auto;min-width:180px}
+    footer{border-top:1px solid var(--line);padding:26px 20px;text-align:center;color:#888;font-family:Arial,sans-serif;font-size:13px}
+    .step{display:flex;gap:14px;margin:14px 0}
+    .num{width:36px;height:36px;border-radius:50%;background:var(--cyan);color:#000;display:grid;place-items:center;font-family:Arial,sans-serif;font-weight:900;flex:0 0 auto}
+    @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:800px){.grid,.grid2{grid-template-columns:1fr}.hero{padding:28px 20px}table{display:block;overflow:auto}}
+    @media(max-width:520px){.wrap{padding-left:14px;padding-right:14px}.card{padding:18px}.form-grid{grid-template-columns:1fr}.field.full,.form-title{grid-column:auto}.toolbar input,.toolbar select{width:100%}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="top-in">
+      <div class="logo">
+        <svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1290 372" role="img" aria-label="STRATUM Power">
+          <rect width="1290" height="372" fill="#141414"/>
+          <rect x="53" y="62" width="269" height="31" fill="#E8E7E3"/><rect x="53" y="119" width="181" height="29" fill="#A9A8A4"/><rect x="53" y="173" width="269" height="30" fill="#6FE8FB"/><rect x="54" y="228" width="123" height="31" fill="#7D7C7A"/><rect x="54" y="285" width="268" height="28" fill="#555454"/>
+          <text x="505" y="172" font-family="Arial, Helvetica, sans-serif" font-size="165" font-weight="700" fill="#F2F1ED" textLength="725" lengthAdjust="spacingAndGlyphs">STRATUM</text>
+          <text x="510" y="308" font-family="Arial, Helvetica, sans-serif" font-size="102" fill="#8B949E" textLength="710" lengthAdjust="spacingAndGlyphs">Power</text>
+        </svg>
+        <small style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:.28em;color:var(--gray)">STRATUMPOWER.AI</small>
+      </div>
+      <span class="badge">Employer / HR Only</span>
+    </div>
+  </header>
 
-<section class="card" style="margin-bottom:22px">
-<h2>Neon Database Connection</h2>
-<p class="muted">Connect this app to Neon in Vercel, not in this code. Set <strong style="color:#fff">DATABASE_URL</strong> in your Vercel project, run <strong style="color:#fff">schema.sql</strong> once in the Neon SQL Editor, then redeploy. No database password is stored in these files.</p>
-<p style="margin-top:12px"><strong>Status:</strong> <span id="neonStatus">Checking...</span></p>
-<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
-<button class="btn btn-primary btn-sm" onclick="checkNeon()">Check connection</button>
-<button class="btn btn-ghost btn-sm" onclick="loadFromNeon()">Load from Neon</button>
-<button class="btn btn-ghost btn-sm" onclick="syncToNeon()">Sync all to Neon</button>
-</div>
-<p class="muted" style="margin-top:12px">If the status stays on Local only, the app still works, but records are only on this device. Clicking Sync to Neon pushes the current table to Neon and replaces what is there.</p>
-</section>
-<div class="grid">
-<div class="card"><div class="stat-label">Total Hires</div><div class="stat" id="hrTotal">0</div><p class="muted">Tracked by the employer</p></div>
-<div class="card"><div class="stat-label">In Progress</div><div class="stat" id="hrActive">0</div><p class="muted">Onboarding not yet closed</p></div>
-<div class="card"><div class="stat-label">Complete</div><div class="stat" id="hrDone">0</div><p class="muted">All employer steps done</p></div>
-<div class="card"><div class="stat-label">Drive Folders Linked</div><div class="stat" id="hrDrive">0</div><p class="muted">Employee folders on file</p></div>
-</div>
-<div class="grid2 section">
-<div class="card"><h2>All Employees</h2><p class="muted" style="margin-bottom:14px">Employer view of every hire. Select a row to open that employee&rsquo;s record and employer checklist below. Each employee can have a Google Drive folder link.</p>
-<div class="toolbar" style="margin-bottom:14px"><input type="text" id="search" placeholder="Search name, role or email..." oninput="renderHR()"><select id="filter" onchange="renderHR()"><option value="">All statuses</option><option>Not started</option><option>In progress</option><option>Complete</option></select></div>
-<div style="overflow:auto"><table><thead><tr><th>Employee</th><th>Role</th><th>Start</th><th>Manager</th><th>Progress</th><th>Status</th><th>Drive Folder</th><th></th></tr></thead><tbody id="hrRows"></tbody></table></div><p class="muted" id="emptyMsg"></p>
-<hr style="border-color:#2a2a2a;margin:18px 0"><button class="btn btn-ghost btn-sm" onclick="exportCSV()">Download list (CSV)</button> <button class="btn btn-ghost btn-sm" onclick="clearSamples()">Remove sample rows</button></div>
-<div class="card"><h2>Add an Employee</h2><p class="muted">Employer creates the record. The employee does not fill this in.</p><label>Full name *</label><input type="text" id="newName" placeholder="Full name"><label>Father&rsquo;s name</label><input type="text" id="newFather" placeholder="Father's name"><label>CNIC</label><input type="text" id="newCnic" placeholder="00000-0000000-0"><label>Email</label><input type="email" id="newEmail" placeholder="name@example.com"><label>Address</label><textarea id="newAddress" rows="2" placeholder="Home address"></textarea><label>Role</label><input type="text" id="newRole" placeholder="Role / title"><label>Start date</label><input type="date" id="newDate"><label>Manager</label><input type="text" id="newMgr" placeholder="Manager name"><label>Google Drive folder link</label><input type="text" id="newDrive" placeholder="Paste Google Drive folder link (optional)"><button class="btn btn-primary" style="margin-top:16px;width:100%" onclick="addHire()">+ Add Employee</button></div>
-</div>
-<div class="grid2 section">
-<div class="card"><h2>Employee Record</h2><p class="muted">Employer use only. Editing and saving here updates the table above.</p>
-<label>Employee</label><select id="recSelect" onchange="selectHire(parseInt(this.value))"></select>
-<label>Full name</label><input type="text" id="recName"><label>Father&rsquo;s name</label><input type="text" id="recFather"><label>CNIC</label><input type="text" id="recCnic"><label>Email</label><input type="email" id="recEmail"><label>Address</label><textarea id="recAddress" rows="2"></textarea><label>Role</label><input type="text" id="recRole"><label>Start date</label><input type="date" id="recDate"><label>Manager</label><input type="text" id="recMgr"><label>Google Drive folder link</label><input type="text" id="recDrive" placeholder="Paste Google Drive folder link"><p style="margin-top:8px"><a id="recDriveOpen" href="#" target="_blank" rel="noopener" class="hidden">Open Drive folder &#8599;</a></p>
-<button class="btn btn-primary btn-sm" style="margin-top:14px" onclick="saveRecord()">Save record</button> <span class="muted" id="savedMsg"></span></div>
-<div class="card"><h2>Employer Timeline</h2>
-<div class="step"><div class="num">1</div><div><strong>Before Day 1 — Employer prepares</strong><p class="muted">Offer issued, ID verified, payroll set up, laptop and accounts ready, Drive folder created.</p></div></div>
-<div class="step"><div class="num">2</div><div><strong>Day 1 — Employer issues and introduces</strong><p class="muted">Laptop, badge and access handed over. Manager and buddy introduced.</p></div></div>
-<div class="step"><div class="num">3</div><div><strong>Week 1 — Employer assigns and tracks</strong><p class="muted">Safety, compliance, product and role training assigned. Chase only what is blocked.</p></div></div>
-<div class="step"><div class="num">4</div><div><strong>Day 30 — Employer reviews and closes</strong><p class="muted">Manager reviews first work, employer holds the 30-day review and closes onboarding.</p></div></div>
-<hr style="border-color:#2a2a2a;margin:18px 0"><h3>Internal HR Notes</h3><p class="muted">Internal only: provisioning contacts, office details, blockers. Not shared with the employee.</p><label>Notes (saves on this device)</label><textarea id="notes" rows="4" placeholder="Office address, HR contact, IT provisioning contact, blockers..."></textarea><button class="btn btn-primary btn-sm" style="margin-top:10px" onclick="saveNotes()">Save notes</button>
-<p style="margin-top:16px">🛡️ <strong>Core rule</strong><br><span class="muted">Super Intelligence (SI) never equals authority. A person reviews and approves.</span></p></div>
-</div>
-<div class="section"><div class="section-head"><div><h2>Employer Checklist</h2><p class="muted">For the selected employee: <strong id="checkFor" style="color:#fff"></strong>. HR / the manager checks each employer step off. Progress in the table updates automatically.</p></div><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span class="tag" id="checkPct">0% complete</span><button class="btn btn-ghost btn-sm" onclick="resetChecks()">Reset checklist</button></div></div>
-<div class="progress"><i id="checkBar"></i></div><div id="taskList"></div></div>
-</main>
-<footer><div style="display:flex;justify-content:center;margin-bottom:12px"><svg class="brand-logo-foot" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1290 372" width="1290" height="372" role="img" aria-label="STRATUM Power">
-  <rect x="0" y="0" width="1290" height="372" fill="#141414"/>
-  <!-- Strata bars -->
-  <rect x="53" y="62" width="269" height="31" fill="#E8E7E3"/>
-  <rect x="53" y="119" width="181" height="29" fill="#A9A8A4"/>
-  <rect x="53" y="173" width="269" height="30" fill="#6FE8FB"/>
-  <rect x="54" y="228" width="123" height="31" fill="#7D7C7A"/>
-  <rect x="54" y="285" width="268" height="28" fill="#555454"/>
-  <!-- Wordmark -->
-  <text x="505" y="172" font-family="Arial, Helvetica, 'Liberation Sans', sans-serif" font-size="165" font-weight="700" letter-spacing="1" fill="#F2F1ED" textLength="725" lengthAdjust="spacingAndGlyphs">STRATUM</text>
-  <text x="510" y="308" font-family="Arial, Helvetica, 'Liberation Sans', sans-serif" font-size="102" font-weight="400" fill="#8B949E" textLength="710" lengthAdjust="spacingAndGlyphs">Power</text>
-</svg></div>STRATUM POWER &bull; STRATUMPOWER.AI &bull; EMPLOYER / HR USE ONLY<br>Vercel deploy — when Neon is connected, records live in your Neon database. Until then, records save to this browser only. Employer / HR use only: keep the deployed site protected.</footer>
-<script>
-const STEPS=[
-{phase:"Before Day 1",title:"Issue offer letter & employment forms",desc:"Send to the employee and file the signed copy in their Drive folder."},
-{phase:"Before Day 1",title:"Verify ID & CNIC on file",desc:"Check the originals and store copies in the employee Drive folder."},
-{phase:"Before Day 1",title:"Set up payroll & benefits record",desc:"Bank details, tax forms, and emergency contact on file."},
-{phase:"Before Day 1",title:"Create employee Drive folder",desc:"Create the folder, paste its link into the record, and file documents there."},
-{phase:"Day 1",title:"Issue laptop, badge & accounts",desc:"Email, calendar, and building / system access ready and handed over."},
-{phase:"Day 1",title:"Assign manager & buddy",desc:"Confirm both, and share the Day 1 plan with them."},
-{phase:"Week 1",title:"Assign safety & compliance training",desc:"Enrol the employee and track completion to done."},
-{phase:"Week 1",title:"Assign product & role training",desc:"STRATUM Spatial Verified basics, plus the role plan from the manager."},
-{phase:"First Month",title:"Review first assignment",desc:"Manager reviews the first delivered work and notes it on the record."},
-{phase:"First Month",title:"Hold 30-day review & close onboarding",desc:"Employer review done both ways, then mark onboarding complete."}];
-/* First employee is added after deploy via the Add an Employee form, so no personal data is shipped in this code. */
-function blankChecks(){return STEPS.map(()=>false)}
-function checksFromProg(p){let n=Math.round((p||0)/10);return STEPS.map((_,i)=>i<n)}
-let hires=JSON.parse(localStorage.getItem('sp_hires')||'null')||[
-{name:"Sample — Alex Example",role:"Electrical Engineer",date:"",mgr:"",prog:40,sample:true},
-{name:"Sample — Jordan Example",role:"Field Technician",date:"",mgr:"",prog:0,sample:true},
-{name:"Sample — Taylor Example",role:"Project Coordinator",date:"",mgr:"",prog:100,sample:true}];
-hires.forEach(h=>{if(!Array.isArray(h.checks)||h.checks.length!==STEPS.length){h.checks=checksFromProg(h.prog)}h.prog=h.checks.filter(Boolean).length*10});
-let sel=parseInt(localStorage.getItem('sp_sel')||'0');if(sel<0||sel>=hires.length)sel=0;
-function save(){localStorage.setItem('sp_hires',JSON.stringify(hires));localStorage.setItem('sp_sel',String(sel))}
-function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
-function status(h){return h.prog>=100?'Complete':h.prog>0?'In progress':'Not started'}
-function renderHR(){let q=(search.value||'').toLowerCase(),f=filter.value;let rows=hires.map((h,i)=>({h,i})).filter(x=>(!q||(x.h.name+' '+(x.h.role||'')+' '+(x.h.email||'')).toLowerCase().includes(q))&&(!f||status(x.h)===f));hrRows.innerHTML=rows.map(({h,i})=>{let detail=[h.email?esc(h.email):'',h.father?'Father: '+esc(h.father):'',h.cnic?'CNIC: '+esc(h.cnic):'',h.address?esc(h.address):''].filter(Boolean).join('<br>');let drive=h.drive?'<a href="'+esc(h.drive)+'" target="_blank" rel="noopener">Open folder &#8599;</a><br><button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="setDrive('+i+')">Edit link</button>':'<button class="btn btn-ghost btn-sm" onclick="setDrive('+i+')">+ Add Drive link</button>';return '<tr class="'+(i===sel?'sel':'')+'"><td><strong>'+esc(h.name)+'</strong>'+(h.sample?' <span class="tag">Sample</span>':'')+(detail?'<br><small class="muted">'+detail+'</small>':'')+'</td><td>'+esc(h.role||'\u2014')+'</td><td>'+(h.date||'\u2014')+'</td><td>'+esc(h.mgr||'\u2014')+'</td><td><div class="progress" style="margin:0;min-width:90px"><i style="width:'+h.prog+'%"></i></div><small>'+h.prog+'%</small></td><td>'+status(h)+'</td><td>'+drive+'</td><td style="white-space:nowrap"><button class="btn btn-primary btn-sm" onclick="selectHire('+i+')">Open</button> <button class="btn btn-ghost btn-sm" onclick="delHire('+i+')">&#10005;</button></td></tr>'}).join('');emptyMsg.textContent=rows.length?'':'No employees match. Add one with the form.';hrTotal.textContent=hires.length;hrActive.textContent=hires.filter(h=>h.prog<100).length;hrDone.textContent=hires.filter(h=>h.prog>=100).length;hrDrive.textContent=hires.filter(h=>h.drive).length;recSelect.innerHTML=hires.map((h,i)=>'<option value="'+i+'"'+(i===sel?' selected':'')+'>'+esc(h.name)+'</option>').join('')}
-function renderRecord(){let h=hires[sel];if(!h)return;recName.value=h.name||'';recFather.value=h.father||'';recCnic.value=h.cnic||'';recEmail.value=h.email||'';recAddress.value=h.address||'';recRole.value=h.role||'';recDate.value=h.date||'';recMgr.value=h.mgr||'';recDrive.value=h.drive||'';updateRecDriveOpen()}
-function updateRecDriveOpen(){let v=(recDrive.value||'').trim();recDriveOpen.href=v||'#';recDriveOpen.classList.toggle('hidden',!v)}
-function renderChecks(){let h=hires[sel];if(!h){taskList.innerHTML='';return}checkFor.textContent=h.name;let el=taskList;el.innerHTML='';let last='';STEPS.forEach((s,i)=>{if(s.phase!==last){el.innerHTML+='<h3 style="margin:18px 0 10px;color:var(--cyan);font-family:Arial,sans-serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase">'+s.phase+'</h3>';last=s.phase}el.innerHTML+='<div class="task '+(h.checks[i]?'done':'')+'"><input type="checkbox" '+(h.checks[i]?'checked':'')+' onchange="toggleCheck('+i+')"><div style="flex:1"><strong>'+s.title+'</strong><p class="muted">'+s.desc+'</p></div><span class="tag">'+(h.checks[i]?'Done':'To do')+'</span></div>'});checkPct.textContent=h.prog+'% complete';checkBar.style.width=h.prog+'%'}
-function renderAll(){renderHR();renderRecord();renderChecks()}
-function selectHire(i){sel=i;save();renderAll();document.getElementById('checkFor').scrollIntoView({behavior:'smooth',block:'nearest'})}
-function toggleCheck(i){let h=hires[sel];h.checks[i]=!h.checks[i];h.prog=h.checks.filter(Boolean).length*10;save();renderHR();renderChecks()}
-function resetChecks(){if(confirm('Reset the employer checklist for this employee?')){hires[sel].checks=blankChecks();hires[sel].prog=0;save();renderHR();renderChecks()}}
-function saveRecord(){let h=hires[sel];if(!h)return;h.name=recName.value.trim()||h.name;h.father=recFather.value.trim();h.cnic=recCnic.value.trim();h.email=recEmail.value.trim();h.address=recAddress.value.trim();h.role=recRole.value.trim();h.date=recDate.value;h.mgr=recMgr.value.trim();let d=recDrive.value.trim();if(d&&!/^https?:\/\//i.test(d)){alert('Paste a full Drive link starting with https://');return}h.drive=d;save();renderAll();savedMsg.textContent='Saved \u2713';setTimeout(()=>savedMsg.textContent='',2000)}
-function saveNotes(){localStorage.setItem('sp_notes',notes.value);alert('Notes saved on this device.')}
-function setDrive(i){let v=prompt('Google Drive folder link for '+hires[i].name+':',hires[i].drive||'');if(v===null)return;v=v.trim();if(v&&!/^https?:\/\//i.test(v)){alert('Paste a full link starting with https://');return}hires[i].drive=v;save();renderAll()}
-function addHire(){if(!newName.value.trim()){alert('Add a name first.');return}let d=newDrive.value.trim();if(d&&!/^https?:\/\//i.test(d)){alert('Paste a full Drive link starting with https://');return}hires.push({name:newName.value.trim(),father:newFather.value.trim(),cnic:newCnic.value.trim(),email:newEmail.value.trim(),address:newAddress.value.trim(),role:newRole.value.trim(),date:newDate.value,mgr:newMgr.value.trim(),drive:d,prog:0,checks:blankChecks()});sel=hires.length-1;save();renderAll();newName.value=newFather.value=newCnic.value=newEmail.value=newAddress.value=newRole.value=newMgr.value=newDrive.value='';newDate.value=''}
-function delHire(i){if(confirm('Remove this employee record?')){hires.splice(i,1);if(sel>=hires.length)sel=Math.max(0,hires.length-1);save();renderAll()}}
-function clearSamples(){hires=hires.filter(h=>!h.sample);if(sel>=hires.length)sel=Math.max(0,hires.length-1);save();renderAll()}
-function exportCSV(){let csv='Name,Father Name,CNIC,Email,Address,Role,Start Date,Manager,Progress %,Status,Google Drive Folder\n'+hires.map(h=>[h.name,h.father,h.cnic,h.email,h.address,h.role,h.date,h.mgr,h.prog,status(h),h.drive].map(x=>'"'+String(x||'').replace(/"/g,'""')+'"').join(',')).join('\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='stratum-employer-onboarding.csv';a.click()}
-recDrive.addEventListener('input',updateRecDriveOpen);notes.value=localStorage.getItem('sp_notes')||'';save();renderAll();
-</script>
-<script>
-let neonMode = false;
-function setNeonStatus(text){ const el=document.getElementById('neonStatus'); if(el) el.textContent=text; }
-function mapDbRow(r){ return {id:r.id, name:r.name||'', father:r.father_name||'', cnic:r.cnic||'', email:r.email||'', address:r.address||'', role:r.role||'', date:r.start_date?String(r.start_date).slice(0,10):'', mgr:r.manager||'', drive:r.drive_folder||'', prog:r.progress||0, sample:!!r.sample, checks:Array.isArray(r.checks)&&r.checks.length===STEPS.length?r.checks:checksFromProg(r.progress||0)}; }
-async function checkNeon(){ try{ const res=await fetch('/api/health'); const data=await res.json(); if(data && data.database==='connected'){ neonMode=true; setNeonStatus('Connected to Neon (' + (data.count ?? '?') + ' employees in database)'); } else { neonMode=false; setNeonStatus('Local only: ' + (data && data.error ? data.error : 'DATABASE_URL is not set in Vercel')); } }catch(e){ neonMode=false; setNeonStatus('Local only: API is not available (this happens when opening the file directly instead of the deployed site)'); } }
-async function loadFromNeon(){ try{ const res=await fetch('/api/employees'); if(!res.ok) throw new Error('API returned ' + res.status); const rows=await res.json(); hires=rows.map(mapDbRow); sel=0; save(); renderAll(); neonMode=true; setNeonStatus('Connected to Neon: loaded ' + hires.length + ' employees'); }catch(e){ alert('Could not load from Neon. Check the connection first, and make sure schema.sql has been run.'); await checkNeon(); } }
-async function syncToNeon(){ if(!confirm('Sync all employees in this table to Neon? This replaces the employees table in Neon with the current table.')) return; try{ const res=await fetch('/api/sync',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({employees:hires})}); const data=await res.json().catch(()=>({})); if(!res.ok) throw new Error(data.error || ('API returned ' + res.status)); neonMode=true; setNeonStatus('Connected to Neon: synced ' + (data.count ?? hires.length) + ' employees'); alert('Synced to Neon.'); }catch(e){ alert('Sync failed: ' + e.message + ' Check that DATABASE_URL is set in Vercel and schema.sql has been run.'); await checkNeon(); } }
-checkNeon();
-</script>
-</body></html>
+  <main class="wrap">
+    <section class="hero">
+      <p class="eyebrow">Employer Onboarding — HR Admin</p>
+      <h1>Onboard people.<br><span>Keep it simple.</span></h1>
+      <p>Manage US and Pakistani employee records in one place. Every change is saved directly to the company database.</p>
+      <div class="kiss"><span class="pill"><b>K</b>eep</span><span class="pill"><b>I</b>t</span><span class="pill"><b>S</b>imple</span><span class="pill"><b>S</b>tep by step</span></div>
+    </section>
+
+    <div class="grid">
+      <div class="card"><div class="stat-label">Total Hires</div><div class="stat" id="hrTotal">0</div><p class="muted">Stored in Neon</p></div>
+      <div class="card"><div class="stat-label">In Progress</div><div class="stat" id="hrActive">0</div><p class="muted">Onboarding not yet closed</p></div>
+      <div class="card"><div class="stat-label">Complete</div><div class="stat" id="hrDone">0</div><p class="muted">All employer steps done</p></div>
+      <div class="card"><div class="stat-label">Drive Folders Linked</div><div class="stat" id="hrDrive">0</div><p class="muted">Employee folders on file</p></div>
+    </div>
+
+    <div class="grid2 section">
+      <section class="card">
+        <div class="section-head">
+          <div><h2>All Employees</h2><p class="muted">Select an employee to open their record and checklist.</p></div>
+          <p id="appStatus" class="status-line" role="status" aria-live="polite">Loading employee records…</p>
+        </div>
+        <div class="toolbar" style="margin-bottom:14px">
+          <input type="text" id="search" placeholder="Search name, role or email…" aria-label="Search employees">
+          <select id="filter" aria-label="Filter employees by status"><option value="">All statuses</option><option>Not started</option><option>In progress</option><option>Complete</option></select>
+        </div>
+        <div style="overflow:auto">
+          <table>
+            <thead><tr><th>Employee</th><th>Role</th><th>Start</th><th>Manager</th><th>Progress</th><th>Status</th><th>Drive Folder</th><th>Actions</th></tr></thead>
+            <tbody id="hrRows"></tbody>
+          </table>
+        </div>
+        <p class="muted" id="emptyMsg"></p>
+        <hr style="border-color:#2a2a2a;margin:18px 0">
+        <button class="btn btn-ghost btn-sm" type="button" id="exportButton">Download list (CSV)</button>
+      </section>
+
+      <section class="card">
+        <h2>Add an Employee</h2>
+        <p class="muted">Choose the country first. The ID, region, and postal fields will adjust automatically.</p>
+        <form id="addForm">
+          <div class="form-grid">
+            <div class="field full"><label for="newCountry">Country *</label><select id="newCountry" required><option>Pakistan</option><option>United States</option></select></div>
+            <div class="field full"><label for="newName">Full name *</label><input type="text" id="newName" autocomplete="name" required></div>
+            <div class="field full"><label for="newFatherSpouse">Father/Spouse Name <span class="muted">(optional)</span></label><input type="text" id="newFatherSpouse"></div>
+            <div class="field"><label for="newIdentity" id="newIdentityLabel">NIC (CNIC)</label><input type="text" id="newIdentity" placeholder="00000-0000000-0"></div>
+            <div class="field hidden" id="newSsnGroup"><label for="newSsn">SSN last four digits</label><input type="text" id="newSsn" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" autocomplete="off" placeholder="1234"></div>
+
+            <div class="form-title">Contact</div>
+            <div class="field"><label for="newEmail">Email</label><input type="email" id="newEmail" autocomplete="email"></div>
+            <div class="field"><label for="newPhone">Phone</label><input type="tel" id="newPhone" autocomplete="tel"></div>
+            <div class="field full"><label for="newAddress">Street address</label><textarea id="newAddress" rows="2" autocomplete="street-address"></textarea></div>
+            <div class="field"><label for="newCity">City</label><input type="text" id="newCity" autocomplete="address-level2"></div>
+            <div class="field"><label for="newState" id="newStateLabel">Province</label><input type="text" id="newState" autocomplete="address-level1"></div>
+            <div class="field"><label for="newPostal" id="newPostalLabel">Postal code</label><input type="text" id="newPostal" autocomplete="postal-code"></div>
+
+            <div class="form-title">Employment</div>
+            <div class="field"><label for="newRole">Role / title</label><input type="text" id="newRole"></div>
+            <div class="field"><label for="newEmploymentType">Employment type</label><select id="newEmploymentType"><option value="">Select type</option><option>Full-time</option><option>Part-time</option><option>Contractor</option><option>Intern</option></select></div>
+            <div class="field"><label for="newDate">Start date</label><input type="date" id="newDate"></div>
+            <div class="field"><label for="newManager">Manager</label><input type="text" id="newManager"></div>
+            <div class="field"><label for="newEmergencyName">Emergency contact name</label><input type="text" id="newEmergencyName"></div>
+            <div class="field"><label for="newEmergencyPhone">Emergency contact phone</label><input type="tel" id="newEmergencyPhone"></div>
+            <div class="field full"><label for="newDrive">Google Drive folder link</label><input type="url" id="newDrive" placeholder="https://…"></div>
+          </div>
+          <button class="btn btn-primary" id="addButton" style="margin-top:16px;width:100%" type="submit">Add Employee</button>
+        </form>
+      </section>
+    </div>
+
+    <div class="grid2 section">
+      <section class="card">
+        <h2>Employee Record</h2>
+        <p class="muted">Employer use only. Saving updates the employee directly in Neon.</p>
+        <label for="recSelect">Employee</label><select id="recSelect"></select>
+        <p id="noRecord" class="muted" style="margin-top:14px">Add an employee to create the first record.</p>
+        <form id="recordForm" class="hidden">
+          <div class="form-grid">
+            <div class="field full"><label for="recCountry">Country *</label><select id="recCountry" required><option>Pakistan</option><option>United States</option></select></div>
+            <div class="field full"><label for="recName">Full name *</label><input type="text" id="recName" required></div>
+            <div class="field full"><label for="recFatherSpouse">Father/Spouse Name <span class="muted">(optional)</span></label><input type="text" id="recFatherSpouse"></div>
+            <div class="field"><label for="recIdentity" id="recIdentityLabel">NIC (CNIC)</label><input type="text" id="recIdentity"></div>
+            <div class="field hidden" id="recSsnGroup"><label for="recSsn">SSN last four digits</label><input type="text" id="recSsn" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" autocomplete="off"></div>
+
+            <div class="form-title">Contact</div>
+            <div class="field"><label for="recEmail">Email</label><input type="email" id="recEmail"></div>
+            <div class="field"><label for="recPhone">Phone</label><input type="tel" id="recPhone"></div>
+            <div class="field full"><label for="recAddress">Street address</label><textarea id="recAddress" rows="2"></textarea></div>
+            <div class="field"><label for="recCity">City</label><input type="text" id="recCity"></div>
+            <div class="field"><label for="recState" id="recStateLabel">Province</label><input type="text" id="recState"></div>
+            <div class="field"><label for="recPostal" id="recPostalLabel">Postal code</label><input type="text" id="recPostal"></div>
+
+            <div class="form-title">Employment</div>
+            <div class="field"><label for="recRole">Role / title</label><input type="text" id="recRole"></div>
+            <div class="field"><label for="recEmploymentType">Employment type</label><select id="recEmploymentType"><option value="">Select type</option><option>Full-time</option><option>Part-time</option><option>Contractor</option><option>Intern</option></select></div>
+            <div class="field"><label for="recDate">Start date</label><input type="date" id="recDate"></div>
+            <div class="field"><label for="recManager">Manager</label><input type="text" id="recManager"></div>
+            <div class="field"><label for="recEmergencyName">Emergency contact name</label><input type="text" id="recEmergencyName"></div>
+            <div class="field"><label for="recEmergencyPhone">Emergency contact phone</label><input type="tel" id="recEmergencyPhone"></div>
+            <div class="field full"><label for="recDrive">Google Drive folder link</label><input type="url" id="recDrive" placeholder="https://…"><p style="margin-top:8px"><a id="recDriveOpen" href="#" target="_blank" rel="noopener" class="hidden">Open Drive folder &#8599;</a></p></div>
+            <div class="field full"><label for="recNotes">Internal HR notes</label><textarea id="recNotes" rows="4" placeholder="Provisioning contacts, office details, or blockers…"></textarea></div>
+          </div>
+          <button class="btn btn-primary btn-sm" id="saveButton" style="margin-top:14px" type="submit">Save record</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Employer Timeline</h2>
+        <div class="step"><div class="num">1</div><div><strong>Before Day 1 — Employer prepares</strong><p class="muted">Offer issued, ID verified, payroll set up, laptop and accounts ready, Drive folder created.</p></div></div>
+        <div class="step"><div class="num">2</div><div><strong>Day 1 — Employer issues and introduces</strong><p class="muted">Laptop, badge and access handed over. Manager and buddy introduced.</p></div></div>
+        <div class="step"><div class="num">3</div><div><strong>Week 1 — Employer assigns and tracks</strong><p class="muted">Safety, compliance, product and role training assigned.</p></div></div>
+        <div class="step"><div class="num">4</div><div><strong>Day 30 — Employer reviews and closes</strong><p class="muted">Manager reviews first work, holds the 30-day review, and closes onboarding.</p></div></div>
+        <hr style="border-color:#2a2a2a;margin:18px 0">
+        <h3>Core rule</h3><p class="muted">Super Intelligence (SI) never equals authority. A person reviews and approves.</p>
+      </section>
+    </div>
+
+    <section class="section">
+      <div class="section-head">
+        <div><h2>Employer Checklist</h2><p class="muted">For the selected employee: <strong id="checkFor" style="color:#fff">No employee selected</strong>.</p></div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span class="tag" id="checkPct">0% complete</span><button class="btn btn-ghost btn-sm" id="resetButton" type="button">Reset checklist</button></div>
+      </div>
+      <div class="progress"><i id="checkBar"></i></div>
+      <div id="taskList"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div style="display:flex;justify-content:center;margin-bottom:12px">
+      <svg class="brand-logo-foot" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1290 372" role="img" aria-label="STRATUM Power">
+        <rect width="1290" height="372" fill="#141414"/>
+        <rect x="53" y="62" width="269" height="31" fill="#E8E7E3"/><rect x="53" y="119" width="181" height="29" fill="#A9A8A4"/><rect x="53" y="173" width="269" height="30" fill="#6FE8FB"/><rect x="54" y="228" width="123" height="31" fill="#7D7C7A"/><rect x="54" y="285" width="268" height="28" fill="#555454"/>
+        <text x="505" y="172" font-family="Arial, Helvetica, sans-serif" font-size="165" font-weight="700" fill="#F2F1ED" textLength="725" lengthAdjust="spacingAndGlyphs">STRATUM</text>
+        <text x="510" y="308" font-family="Arial, Helvetica, sans-serif" font-size="102" fill="#8B949E" textLength="710" lengthAdjust="spacingAndGlyphs">Power</text>
+      </svg>
+    </div>
+    STRATUM POWER &bull; STRATUMPOWER.AI &bull; EMPLOYER / HR USE ONLY<br>
+    Employee records are stored in Neon. Keep this internal HR application protected.
+  </footer>
+
+  <script>
+    const STEPS = [
+      {phase:'Before Day 1',title:'Issue offer letter & employment forms',desc:'Send to the employee and file the signed copy in their Drive folder.'},
+      {phase:'Before Day 1',title:'Verify identity document',desc:'Check the original NIC, state ID, or other authorized document and store it securely.'},
+      {phase:'Before Day 1',title:'Set up payroll & benefits record',desc:'Bank details, applicable tax forms, and emergency contact on file.'},
+      {phase:'Before Day 1',title:'Create employee Drive folder',desc:'Create the folder, add its link to the record, and file documents there.'},
+      {phase:'Day 1',title:'Issue laptop, badge & accounts',desc:'Email, calendar, and building or system access ready and handed over.'},
+      {phase:'Day 1',title:'Assign manager & buddy',desc:'Confirm both and share the Day 1 plan with them.'},
+      {phase:'Week 1',title:'Assign safety & compliance training',desc:'Enroll the employee and track completion.'},
+      {phase:'Week 1',title:'Assign product & role training',desc:'Assign company basics and the manager’s role plan.'},
+      {phase:'First Month',title:'Review first assignment',desc:'Manager reviews the first delivered work and records the outcome.'},
+      {phase:'First Month',title:'Hold 30-day review & close onboarding',desc:'Complete the employer review, then close onboarding.'}
+    ];
+
+    let employees = [];
+    let selectedId = null;
+
+    const byId = id => document.getElementById(id);
+    const textValue = id => byId(id).value.trim();
+    const blankChecks = () => STEPS.map(() => false);
+    const checksFromProgress = progress => STEPS.map((_, index) => index < Math.round((Number(progress) || 0) / 10));
+    const selectedEmployee = () => employees.find(employee => employee.id === selectedId) || null;
+
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[character]));
+    }
+
+    function normalizeEmployee(employee) {
+      const checks = Array.isArray(employee.checks) && employee.checks.length === STEPS.length
+        ? employee.checks.map(Boolean)
+        : checksFromProgress(employee.progress);
+      return {
+        ...employee,
+        country: employee.country || 'Pakistan',
+        checks,
+        progress: Math.round((checks.filter(Boolean).length / STEPS.length) * 100),
+      };
+    }
+
+    function status(employee) {
+      return employee.progress >= 100 ? 'Complete' : employee.progress > 0 ? 'In progress' : 'Not started';
+    }
+
+    function setStatus(message, type = '') {
+      const element = byId('appStatus');
+      element.textContent = message;
+      element.className = 'status-line' + (type ? ' ' + type : '');
+    }
+
+    async function apiRequest(url, options = {}) {
+      const response = await fetch(url, {
+        ...options,
+        headers: options.body ? {'Content-Type':'application/json', ...(options.headers || {})} : options.headers,
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || 'The request could not be completed.');
+      return data;
+    }
+
+    function updateCountryFields(prefix) {
+      const isUS = byId(prefix + 'Country').value === 'United States';
+      byId(prefix + 'IdentityLabel').textContent = isUS ? 'State ID' : 'NIC (CNIC)';
+      byId(prefix + 'Identity').placeholder = isUS ? 'Driver license or state ID' : '00000-0000000-0';
+      byId(prefix + 'StateLabel').textContent = isUS ? 'State' : 'Province';
+      byId(prefix + 'PostalLabel').textContent = isUS ? 'ZIP code' : 'Postal code';
+      byId(prefix + 'SsnGroup').classList.toggle('hidden', !isUS);
+    }
+
+    function renderTable() {
+      const query = textValue('search').toLowerCase();
+      const filter = byId('filter').value;
+      const rows = employees.filter(employee => {
+        const searchable = [employee.name, employee.role, employee.email, employee.country].join(' ').toLowerCase();
+        return (!query || searchable.includes(query)) && (!filter || status(employee) === filter);
+      });
+
+      byId('hrRows').innerHTML = rows.map(employee => {
+        const identity = employee.nic_state_id ? 'NIC/State ID: ' + employee.nic_state_id : '';
+        const details = [employee.email, employee.phone, employee.country, identity].filter(Boolean).map(escapeHtml).join('<br>');
+        const safeDrive = /^https?:\/\//i.test(employee.drive_folder || '') ? employee.drive_folder : '';
+        const drive = safeDrive
+          ? '<a href="' + escapeHtml(safeDrive) + '" target="_blank" rel="noopener">Open folder &#8599;</a><br><button class="btn btn-ghost btn-sm" type="button" data-id="' + employee.id + '" onclick="setDrive(this.dataset.id)">Edit link</button>'
+          : '<button class="btn btn-ghost btn-sm" type="button" data-id="' + employee.id + '" onclick="setDrive(this.dataset.id)">Add Drive link</button>';
+        return '<tr class="' + (employee.id === selectedId ? 'sel' : '') + '">' +
+          '<td><strong>' + escapeHtml(employee.name) + '</strong>' + (details ? '<br><small class="muted">' + details + '</small>' : '') + '</td>' +
+          '<td>' + escapeHtml(employee.role || '—') + (employee.employment_type ? '<br><small class="muted">' + escapeHtml(employee.employment_type) + '</small>' : '') + '</td>' +
+          '<td>' + escapeHtml(employee.start_date ? String(employee.start_date).slice(0, 10) : '—') + '</td>' +
+          '<td>' + escapeHtml(employee.manager || '—') + '</td>' +
+          '<td><div class="progress" style="margin:0;min-width:90px"><i style="width:' + employee.progress + '%"></i></div><small>' + employee.progress + '%</small></td>' +
+          '<td>' + status(employee) + '</td><td>' + drive + '</td>' +
+          '<td style="white-space:nowrap"><button class="btn btn-primary btn-sm" type="button" data-id="' + employee.id + '" onclick="selectEmployee(this.dataset.id)">Open</button> <button class="btn btn-ghost btn-danger btn-sm" type="button" data-id="' + employee.id + '" onclick="deleteEmployee(this.dataset.id)">Delete</button></td></tr>';
+      }).join('');
+
+      byId('emptyMsg').textContent = rows.length ? '' : employees.length ? 'No employees match this filter.' : 'No employees yet. Add the first employee with the form.';
+      byId('hrTotal').textContent = employees.length;
+      byId('hrActive').textContent = employees.filter(employee => employee.progress < 100).length;
+      byId('hrDone').textContent = employees.filter(employee => employee.progress >= 100).length;
+      byId('hrDrive').textContent = employees.filter(employee => employee.drive_folder).length;
+      byId('recSelect').innerHTML = employees.length
+        ? employees.map(employee => '<option value="' + employee.id + '"' + (employee.id === selectedId ? ' selected' : '') + '>' + escapeHtml(employee.name) + '</option>').join('')
+        : '<option value="">No employees</option>';
+      byId('recSelect').disabled = !employees.length;
+    }
+
+    const recordFields = {
+      recName:'name',recFatherSpouse:'father_spouse_name',recIdentity:'nic_state_id',recSsn:'ssn_last_four',
+      recEmail:'email',recPhone:'phone',recAddress:'address',recCity:'city',recState:'state_province',
+      recPostal:'postal_code',recCountry:'country',recRole:'role',recEmploymentType:'employment_type',
+      recDate:'start_date',recManager:'manager',recEmergencyName:'emergency_contact_name',
+      recEmergencyPhone:'emergency_contact_phone',recDrive:'drive_folder',recNotes:'internal_notes'
+    };
+
+    function renderRecord() {
+      const employee = selectedEmployee();
+      byId('recordForm').classList.toggle('hidden', !employee);
+      byId('noRecord').classList.toggle('hidden', Boolean(employee));
+      if (!employee) return;
+      Object.entries(recordFields).forEach(([elementId, key]) => {
+        byId(elementId).value = key === 'start_date' && employee[key] ? String(employee[key]).slice(0, 10) : employee[key] || '';
+      });
+      updateCountryFields('rec');
+      updateDriveLink();
+    }
+
+    function renderChecklist() {
+      const employee = selectedEmployee();
+      byId('resetButton').disabled = !employee;
+      if (!employee) {
+        byId('checkFor').textContent = 'No employee selected';
+        byId('checkPct').textContent = '0% complete';
+        byId('checkBar').style.width = '0%';
+        byId('taskList').innerHTML = '<p class="muted">Add or select an employee to use the checklist.</p>';
+        return;
+      }
+
+      byId('checkFor').textContent = employee.name;
+      let lastPhase = '';
+      byId('taskList').innerHTML = STEPS.map((step, index) => {
+        const heading = step.phase !== lastPhase ? '<h3 style="margin:18px 0 10px;color:var(--cyan);font-family:Arial,sans-serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase">' + step.phase + '</h3>' : '';
+        lastPhase = step.phase;
+        return heading + '<div class="task ' + (employee.checks[index] ? 'done' : '') + '"><input type="checkbox" aria-label="' + escapeHtml(step.title) + '" ' + (employee.checks[index] ? 'checked' : '') + ' onchange="toggleCheck(' + index + ',this)"><div style="flex:1"><strong>' + step.title + '</strong><p class="muted">' + step.desc + '</p></div><span class="tag">' + (employee.checks[index] ? 'Done' : 'To do') + '</span></div>';
+      }).join('');
+      byId('checkPct').textContent = employee.progress + '% complete';
+      byId('checkBar').style.width = employee.progress + '%';
+    }
+
+    function renderAll() {
+      renderTable();
+      renderRecord();
+      renderChecklist();
+    }
+
+    function collectForm(prefix, current = {}) {
+      const country = byId(prefix + 'Country').value;
+      return {
+        ...current,
+        name: textValue(prefix + 'Name'),
+        father_spouse_name: textValue(prefix + 'FatherSpouse'),
+        nic_state_id: textValue(prefix + 'Identity'),
+        ssn_last_four: country === 'United States' ? textValue(prefix + 'Ssn') : null,
+        email: textValue(prefix + 'Email'),
+        phone: textValue(prefix + 'Phone'),
+        address: textValue(prefix + 'Address'),
+        city: textValue(prefix + 'City'),
+        state_province: textValue(prefix + 'State'),
+        postal_code: textValue(prefix + 'Postal'),
+        country,
+        role: textValue(prefix + 'Role'),
+        employment_type: byId(prefix + 'EmploymentType').value,
+        start_date: byId(prefix + 'Date').value || null,
+        manager: textValue(prefix + 'Manager'),
+        emergency_contact_name: textValue(prefix + 'EmergencyName'),
+        emergency_contact_phone: textValue(prefix + 'EmergencyPhone'),
+        drive_folder: textValue(prefix + 'Drive'),
+        internal_notes: prefix === 'rec' ? textValue('recNotes') : null,
+        checks: Array.isArray(current.checks) ? current.checks : blankChecks(),
+      };
+    }
+
+    async function loadEmployees() {
+      try {
+        const rows = await apiRequest('/api/employees');
+        employees = rows.map(normalizeEmployee);
+        selectedId = employees.some(employee => employee.id === selectedId) ? selectedId : employees[0]?.id || null;
+        renderAll();
+        setStatus('All changes save directly to Neon.', 'success');
+      } catch (error) {
+        employees = [];
+        selectedId = null;
+        renderAll();
+        setStatus(error.message + ' Check DATABASE_URL and run schema.sql in Neon.', 'error');
+      }
+    }
+
+    function selectEmployee(id) {
+      selectedId = id;
+      renderAll();
+      byId('recordForm').scrollIntoView({behavior:'smooth',block:'nearest'});
+    }
+
+    async function addEmployee(event) {
+      event.preventDefault();
+      const button = byId('addButton');
+      const employee = collectForm('new');
+      button.disabled = true;
+      button.textContent = 'Adding…';
+      setStatus('Saving employee…');
+      try {
+        const created = normalizeEmployee(await apiRequest('/api/employees', {method:'POST', body:JSON.stringify(employee)}));
+        employees.unshift(created);
+        selectedId = created.id;
+        byId('addForm').reset();
+        updateCountryFields('new');
+        renderAll();
+        setStatus(created.name + ' was added to Neon.', 'success');
+      } catch (error) {
+        setStatus(error.message, 'error');
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Add Employee';
+      }
+    }
+
+    async function saveRecord(event) {
+      event.preventDefault();
+      const current = selectedEmployee();
+      if (!current) return;
+      const button = byId('saveButton');
+      button.disabled = true;
+      button.textContent = 'Saving…';
+      setStatus('Saving changes…');
+      try {
+        const updated = normalizeEmployee(await apiRequest('/api/employees?id=' + encodeURIComponent(current.id), {method:'PUT', body:JSON.stringify(collectForm('rec', current))}));
+        employees = employees.map(employee => employee.id === updated.id ? updated : employee);
+        renderAll();
+        setStatus('Employee record saved to Neon.', 'success');
+      } catch (error) {
+        setStatus(error.message, 'error');
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Save record';
+      }
+    }
+
+    async function saveEmployee(employee, successMessage) {
+      const updated = normalizeEmployee(await apiRequest('/api/employees?id=' + encodeURIComponent(employee.id), {method:'PUT', body:JSON.stringify(employee)}));
+      employees = employees.map(item => item.id === updated.id ? updated : item);
+      renderAll();
+      setStatus(successMessage, 'success');
+    }
+
+    async function toggleCheck(index, checkbox) {
+      const current = selectedEmployee();
+      if (!current) return;
+      checkbox.disabled = true;
+      const updated = {...current, checks:[...current.checks]};
+      updated.checks[index] = checkbox.checked;
+      setStatus('Saving checklist…');
+      try {
+        await saveEmployee(updated, 'Checklist saved to Neon.');
+      } catch (error) {
+        renderAll();
+        setStatus(error.message, 'error');
+      }
+    }
+
+    async function resetChecklist() {
+      const current = selectedEmployee();
+      if (!current || !confirm('Reset the employer checklist for this employee?')) return;
+      setStatus('Resetting checklist…');
+      try {
+        await saveEmployee({...current, checks:blankChecks()}, 'Checklist reset in Neon.');
+      } catch (error) {
+        setStatus(error.message, 'error');
+      }
+    }
+
+    async function setDrive(id) {
+      const current = employees.find(employee => employee.id === id);
+      if (!current) return;
+      const link = prompt('Google Drive folder link for ' + current.name + ':', current.drive_folder || '');
+      if (link === null) return;
+      if (link.trim() && !/^https?:\/\//i.test(link.trim())) {
+        setStatus('Paste a full Drive link starting with http:// or https://.', 'error');
+        return;
+      }
+      setStatus('Saving Drive link…');
+      try {
+        await saveEmployee({...current, drive_folder:link.trim()}, 'Drive link saved to Neon.');
+      } catch (error) {
+        setStatus(error.message, 'error');
+      }
+    }
+
+    async function deleteEmployee(id) {
+      const employee = employees.find(item => item.id === id);
+      if (!employee || !confirm('Permanently remove ' + employee.name + ' from Neon?')) return;
+      setStatus('Deleting employee…');
+      try {
+        await apiRequest('/api/employees?id=' + encodeURIComponent(id), {method:'DELETE'});
+        employees = employees.filter(item => item.id !== id);
+        if (selectedId === id) selectedId = employees[0]?.id || null;
+        renderAll();
+        setStatus(employee.name + ' was removed from Neon.', 'success');
+      } catch (error) {
+        setStatus(error.message, 'error');
+      }
+    }
+
+    function updateDriveLink() {
+      const link = textValue('recDrive');
+      const valid = /^https?:\/\//i.test(link);
+      byId('recDriveOpen').href = valid ? link : '#';
+      byId('recDriveOpen').classList.toggle('hidden', !valid);
+    }
+
+    function exportCsv() {
+      const headings = ['Name','Father/Spouse Name','NIC/State ID','SSN Last Four','Email','Phone','Street Address','City','State/Province','ZIP/Postal Code','Country','Role','Employment Type','Start Date','Manager','Emergency Contact','Emergency Phone','Progress %','Status','Google Drive Folder'];
+      const rows = employees.map(employee => [employee.name,employee.father_spouse_name,employee.nic_state_id,employee.ssn_last_four,employee.email,employee.phone,employee.address,employee.city,employee.state_province,employee.postal_code,employee.country,employee.role,employee.employment_type,employee.start_date ? String(employee.start_date).slice(0,10) : '',employee.manager,employee.emergency_contact_name,employee.emergency_contact_phone,employee.progress,status(employee),employee.drive_folder]);
+      const csv = [headings, ...rows].map(row => row.map(value => '"' + String(value ?? '').replace(/"/g, '""') + '"').join(',')).join('\n');
+      const url = URL.createObjectURL(new Blob([csv], {type:'text/csv'}));
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = 'stratum-employees.csv';
+      anchor.click();
+      URL.revokeObjectURL(url);
+    }
+
+    byId('search').addEventListener('input', renderTable);
+    byId('filter').addEventListener('change', renderTable);
+    byId('newCountry').addEventListener('change', () => updateCountryFields('new'));
+    byId('recCountry').addEventListener('change', () => updateCountryFields('rec'));
+    byId('recSelect').addEventListener('change', event => selectEmployee(event.target.value));
+    byId('recDrive').addEventListener('input', updateDriveLink);
+    byId('addForm').addEventListener('submit', addEmployee);
+    byId('recordForm').addEventListener('submit', saveRecord);
+    byId('resetButton').addEventListener('click', resetChecklist);
+    byId('exportButton').addEventListener('click', exportCsv);
+
+    updateCountryFields('new');
+    loadEmployees();
+  </script>
+</body>
+</html>
